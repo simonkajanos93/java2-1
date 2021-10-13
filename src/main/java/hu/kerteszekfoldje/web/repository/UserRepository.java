@@ -1,4 +1,4 @@
-package hu.kerteszekfoldje.web.model;
+package hu.kerteszekfoldje.web.repository;
 
 import hu.kerteszekfoldje.web.model.User;
 import org.springframework.data.repository.CrudRepository;
