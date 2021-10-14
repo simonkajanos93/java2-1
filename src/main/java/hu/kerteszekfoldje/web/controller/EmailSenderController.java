@@ -4,9 +4,8 @@ import hu.kerteszekfoldje.web.model.Email;
 import hu.kerteszekfoldje.web.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/email")
@@ -15,21 +14,21 @@ public class EmailSenderController {
     private EmailService emailService;
 
     @GetMapping(path = "/")
-    public String main() {
-        return "email";
+    public String main(Model model) {
+        model.addAttribute("mail", new Email());
+        return "email/add";
     }
 
-
-    @GetMapping(path = "/add")
-    public @ResponseBody
-    String sendEmail() {
-        emailService.restSendEmail();
-        return "Saved";
+    @PostMapping(path = "/")
+    public String sendMail(@ModelAttribute Email mail, Model model) {
+        model.addAttribute("mailSubmitted", mail);
+        emailService.restSendEmail(mail);
+        return "email/add";
     }
 
-    @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<Email> getEmails() {
-        return emailService.fetchAllEmail();
+    @GetMapping(path = "/list")
+    public String listMails(Model model) {
+        model.addAttribute("mails", emailService.fetchAllEmail());
+        return "email/list";
     }
 }

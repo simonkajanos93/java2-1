@@ -19,12 +19,12 @@ public class Email {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date created_at;
+    private Date createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    private Date updated_at;
+    private Date updatedAt;
 
     public Integer getId() {
         return id;
@@ -48,5 +48,9 @@ public class Email {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getDate() {
+        return createdAt.toString();
     }
 }
