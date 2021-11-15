@@ -1,21 +1,33 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Email küldés</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+    <meta charset="UTF-8">
+    <title>E-mail lista</title>
 </head>
 <body>
-<div th:if="${mailSubmitted}">
-    <h1>Eredmény</h1>
-    <p th:text="'To: ' + ${mailSubmitted.target}" />
-    <p th:text="'message: ' + ${mailSubmitted.message}" />
+<div th:replace="fragment ::html_header"></div>
+<div id="main-wrapper" class="container">
+    <div th:if="${mailSubmitted}">
+        <h1>Eredmény</h1>
+        <p th:text="'To: ' + ${mailSubmitted.target}" />
+        <p th:text="'message: ' + ${mailSubmitted.message}" />
+    </div>
+    <div th:unless="${mailSubmitted}">
+        <form action="#" th:action="@{/email/}" th:object="${mail}" method="post">
+            <div class="mb-3">
+                <div class="form-group">
+                    <label for="usr">Címzett:</label>
+                    <input type="text" class="form-control" th:field="*{target}" id="usr">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Üzenet:</label>
+                    <input type="password" class="form-control" th:field="*{message}" id="pwd">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Küld</button>
+        </form>
+    </div>
 </div>
-<div th:unless="${mailSubmitted}">
-    <form action="#" th:action="@{/email/}" th:object="${mail}" method="post">
-        <p>Címzett: <input type="text" th:field="*{target}" /></p>
-        <p>Üzenet: <input type="text" th:field="*{message}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-</div>
+<div th:replace="fragment ::html_footer"></div>
 </body>
 </html>

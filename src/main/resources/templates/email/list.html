@@ -1,12 +1,13 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Emailek</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+    <meta charset="UTF-8">
+    <title>E-mail lista</title>
 </head>
 <body>
-<div>
-    <table>
+<div th:replace="fragment ::html_header"></div>
+<div id="main-wrapper" class="container">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>Címzett</th>
@@ -27,5 +28,6 @@
         </tbody>
     </table>
 </div>
+<div th:replace="fragment ::html_footer"></div>
 </body>
 </html>
