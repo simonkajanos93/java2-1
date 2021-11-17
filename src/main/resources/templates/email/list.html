@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+    <meta charset="UTF-8">
+    <title>E-mail lista</title>
+</head>
+<body>
+<div th:replace="fragment ::html_header"></div>
+<div id="main-wrapper" class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Címzett</th>
+            <th>Üzenet</th>
+            <th>Küldés dátuma</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mail : ${mails}">
+            <td>
+                <strong th:text="${mail.target}"></strong>
+            </td>
+            <td>
+                <p th:text="${mail.message}"></p>
+            </td>
+            <td><p th:text="${mail.getDate()}"></p></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragment ::html_footer"></div>
+</body>
+</html>
