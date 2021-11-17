@@ -13,7 +13,7 @@ public class EmailSenderController {
     @Autowired
     private EmailService emailService;
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "")
     public String main(Model model) {
         model.addAttribute("mail", new Email());
         return "email/add";

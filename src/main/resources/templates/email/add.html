@@ -16,12 +16,12 @@
         <form action="#" th:action="@{/email/}" th:object="${mail}" method="post">
             <div class="mb-3">
                 <div class="form-group">
-                    <label for="usr">Címzett:</label>
-                    <input type="text" class="form-control" th:field="*{target}" id="usr">
+                    <label for="to">Címzett:</label>
+                    <input type="text" class="form-control" th:field="*{target}" id="to">
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Üzenet:</label>
-                    <input type="password" class="form-control" th:field="*{message}" id="pwd">
+                    <label for="message">Üzenet:</label>
+                    <input type="text" class="form-control" th:field="*{message}" id="message">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Küld</button>

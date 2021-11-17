@@ -17,21 +17,33 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Kertészek Földje Akciócsoport Egyesület</a>
+                <span sec:authorize="isAuthenticated()">
+                    Bejelentkezett: [[${#request.userPrincipal.principal.fullName}]]
+                    (<span sec:authentication="name"></span>)
+                </span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Főoldal</a>
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Főoldal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/email/list">E-mail lista</a>
+                            <a class="nav-link active" th:href="@{/email/list}">E-mail lista</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/email/">E-mail küldés</a>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <a class="nav-link active" th:href="@{/email}">E-mail küldés</a>
                         </li>
-
+                        <li class="nav-item" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{/register}">Regisztráció</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{/login}">Belépés</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <a class="nav-link" th:href="@{/logout}">Kilépés</a>
+                        </li>
                     </ul>
                 </div>
             </div>
