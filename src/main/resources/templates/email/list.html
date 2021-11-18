@@ -7,26 +7,35 @@
 <body>
 <div th:replace="fragment ::html_header"></div>
 <div id="main-wrapper" class="container">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Címzett</th>
-            <th>Üzenet</th>
-            <th>Küldés dátuma</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="mail : ${mails}">
-            <td>
-                <strong th:text="${mail.target}"></strong>
-            </td>
-            <td>
-                <p th:text="${mail.message}"></p>
-            </td>
-            <td><p th:text="${mail.getDate()}"></p></td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="side-image"></div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <div class="mb-4">
+                <h2>Elküldött e-mail-ek</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Címzett</th>
+                    <th>Üzenet</th>
+                    <th>Küldés dátuma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="mail : ${mails}">
+                    <td>
+                        <strong th:text="${mail.target}"></strong>
+                    </td>
+                    <td>
+                        <p th:text="${mail.message}"></p>
+                    </td>
+                    <td><p th:text="${mail.getDate()}"></p></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div th:replace="fragment ::html_footer"></div>
 </body>
