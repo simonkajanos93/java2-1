@@ -24,7 +24,7 @@
 #side-image {
     width: 100%;
     background-image: url(/img/bg-kf.jpg);
-    background-size: 458px;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
     position: fixed;
